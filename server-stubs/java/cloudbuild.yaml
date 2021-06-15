@@ -1,0 +1,28 @@
+steps:
+# Build the jar
+- name: 'maven'
+  entrypoint: 'mvn'
+  args: ["clean", "install"]
+# Build the container image
+- name: 'docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}', '--build-arg=JAR_FILE=target/sample-app-1-jar-with-dependencies.jar', '.']
+# Push the container image to Container Registry
+- name: 'docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', '${_SERVICE_NAME}', '--image', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}', '--region', '${_REGION}', '--platform', 'managed']
+# Allow unauthenticated requests to the server
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'services', 'add-iam-policy-binding', '--region=${_REGION}', '--member=allUsers', '--role=roles/run.invoker', '--platform', 'managed', '${_SERVICE_NAME}']
+substitutions:
+  # Name of the image. It will be stored in the Container Registry under this name
+  _IMAGE_NAME: ec-sample-image-java # TODO: Replace with your own image name
+  # Name of the Cloud Run service
+  _SERVICE_NAME: ec-sample-service-java # TODO: Replace with your own service name
+  # Region to deploy the service (see https://cloud.google.com/run/docs/locations)
+  _REGION: us-west1 # TODO: Replace with your own region
+images:
+- gcr.io/$PROJECT_ID/${_IMAGE_NAME}
