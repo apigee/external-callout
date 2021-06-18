@@ -1,5 +1,8 @@
 # ExternalCallout policy
 
+_This is a preview of the GitHub repo to accompany Apigee's ExternalCallout
+policy, so the current content is limited and subject to change._
+
 The ExternalCallout policy allows users to build their own services using a
 well-defined API that is supported by Apigee. The API and services are defined
 using [Protocol Buffers](https://developers.google.com/protocol-buffers) and
@@ -13,12 +16,13 @@ This repository contains files that may be useful for developers as they are
 developing their ExternalCallout policies. More specifically, the repository
 contains following:
 
-- proto: the proto that defines the API used by Apigee and the gRPC server to
-  communicate
-- server-stubs: gRPC server stubs that users can use to quickly create and
-  deploy a gRPC server
-- sample-proxies: sample proxies that users can use to try out the
-  ExternalCallout policy
+- [proto](proto): The proto that defines the API used by Apigee and the gRPC
+  server to communicate.
+- [server-stubs](server-stubs): gRPC server stubs that users can use to quickly
+  create and deploy a gRPC server. Currently available Java, with support for
+  Golang and Node.js coming soon.
+- sample-proxies: Sample proxies that users can use to try out the
+  ExternalCallout policy. Coming soon.
 
 ## License
 
