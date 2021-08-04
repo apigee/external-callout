@@ -67,7 +67,7 @@ public class GrpcServer {
    * <p>The port must be read from the environment variable because Cloud Run requires it. See
    * https://cloud.google.com/run/docs/triggering/grpc#unauthenticated-grpc.
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException, InterruptedException {
     String portStr = System.getenv("PORT");
     if (portStr == null || portStr.isEmpty()) {
       portStr = "8080";

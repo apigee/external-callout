@@ -54,18 +54,6 @@
         <groupId>org.xolstice.maven.plugins</groupId>
         <artifactId>protobuf-maven-plugin</artifactId>
         <version>0.6.1</version>
-        <extensions>
-          <!-- ==================================================================================================== -->
-          <!-- kr.motd.maven will detect the operating system and hardware of the current system. This is used by   -->
-          <!-- the protobuf-maven-plugin to download the right platform-specific binary that will convert the proto -->
-          <!-- into Java code.                                                                                      -->
-          <!-- ==================================================================================================== -->
-          <extension>
-            <groupId>kr.motd.maven</groupId>
-            <artifactId>os-maven-plugin</artifactId>
-            <version>${os.maven.version}</version>
-          </extension>
-        </extensions>
         <configuration>
           <protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>
           <pluginId>grpc-java</pluginId>
@@ -103,5 +91,17 @@
         </executions>
       </plugin>
     </plugins>
+    <extensions>
+      <!-- ==================================================================================================== -->
+      <!-- kr.motd.maven will detect the operating system and hardware of the current system. This is used by   -->
+      <!-- the protobuf-maven-plugin to download the right platform-specific binary that will convert the proto -->
+      <!-- into Java code.                                                                                      -->
+      <!-- ==================================================================================================== -->
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>${os.maven.version}</version>
+      </extension>
+    </extensions>
   </build>
 </project>
