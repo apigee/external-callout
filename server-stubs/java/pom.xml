@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <properties>
-    <grpc.version>1.36.0</grpc.version>
+    <grpc.version>1.75.0</grpc.version>
     <maven.compiler.version>3.8.1</maven.compiler.version>
     <os.maven.version>1.4.1.Final</os.maven.version>
     <protoc.version>3.11.4</protoc.version>
